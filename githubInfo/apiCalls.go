@@ -14,8 +14,10 @@ func getDetails(username string) UserInfo{
 	if err != nil {
 		logrus.Fatalln(err)
 	}
+	repos, _, err := client.Repositories.List(ctx, username, nil)
 	var details UserInfo
 	details.Username = username
+	details.NumberOfPublicRepos = len(repos)
 	details.NumberOfJoinedOrganizations = len(orgs)
 	logrus.Println(username, " has joined ", len(orgs), " GitHub organizations ")
 	return details
