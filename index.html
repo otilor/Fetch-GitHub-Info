@@ -14,10 +14,13 @@
                 <div class="field">
                     <label class="label">GitHub Username</label>
                     <div class="control">
-                        <input class="input" type="text" placeholder="GitHub username" autofocus>
-                        <div class="has-text-centered">
-                            <button type="submit" class="button px-3 my-3 py-3 has-background-danger-dark has-text-white">Search</button>
-                        </div>
+                        <form action = "/search" method="post">
+                            <input class="input" name = "githubUsername" type="text" placeholder="GitHub username" autofocus>
+                            <div class="has-text-centered">
+                                <button type="submit" class="button px-3 my-3 py-3 has-background-danger-dark has-text-white">Search</button>
+                            </div>
+                        </form>
+
                     </div>
                 </div>
             </div>
