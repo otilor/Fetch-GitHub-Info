@@ -1,7 +1,6 @@
 package githubInfo
 
 import (
-	"github.com/sirupsen/logrus"
 	"net/http"
 )
 
@@ -16,7 +15,6 @@ func Search(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "POST" {
 		_ = r.ParseForm()
 		username := r.FormValue("githubUsername")
-		logrus.Println("Getting details for ", username)
 		details := getDetails(username)
 		renderWithData(w, "search.html", details, r)
 
