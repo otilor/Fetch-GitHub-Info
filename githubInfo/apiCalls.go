@@ -31,6 +31,5 @@ func getDetails(username string) UserInfo{
 	details.Username = username
 	details.NumberOfPublicRepos = len(allRepos)
 	details.NumberOfJoinedOrganizations = len(orgs)
-	logrus.Println(username, " has joined ", len(orgs), " GitHub organizations ")
 	return details
 }
