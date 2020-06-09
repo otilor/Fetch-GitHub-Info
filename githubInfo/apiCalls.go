@@ -14,10 +14,22 @@ func getDetails(username string) UserInfo{
 	if err != nil {
 		logrus.Fatalln(err)
 	}
-	repos, _, err := client.Repositories.List(ctx, username, nil)
+	opt := &github.RepositoryListOptions{Type: "owner", Sort: "updated", Direction: "desc"}
+	var allRepos []*github.Repository
+	for {
+		repos, resp, err := client.Repositories.List(ctx, username, opt)
+		if err != nil {
+			logrus.Fatalln(err)
+		}
+		allRepos = append(allRepos, repos...)
+		if resp.NextPage == 0 {
+			break
+		}
+		opt.Page = resp.NextPage
+	}
 	var details UserInfo
 	details.Username = username
-	details.NumberOfPublicRepos = len(repos)
+	details.NumberOfPublicRepos = len(allRepos)
 	details.NumberOfJoinedOrganizations = len(orgs)
 	logrus.Println(username, " has joined ", len(orgs), " GitHub organizations ")
 	return details
