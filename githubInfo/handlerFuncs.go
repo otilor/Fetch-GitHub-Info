@@ -17,6 +17,7 @@ func Search(w http.ResponseWriter, r *http.Request) {
 		_ = r.ParseForm()
 		username := r.FormValue("githubUsername")
 		logrus.Println("Getting details for ", username)
-		getDetails(username)
+		_ = getDetails(username)
+
 	}
 }
