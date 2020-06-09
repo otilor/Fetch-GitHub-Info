@@ -13,3 +13,11 @@ func render(w http.ResponseWriter, tmpl string,r *http.Request) {
 	}
 	err = t.Execute(w, nil)
 }
+
+func renderWithData(w http.ResponseWriter, tmpl string, data interface{}, r *http.Request) {
+	t, err := template.ParseFiles(tmpl)
+	if err != nil {
+		logrus.Fatalln(err)
+	}
+	err = t.Execute(w, data)
+}
